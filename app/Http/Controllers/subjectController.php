@@ -22,7 +22,7 @@ class subjectController extends Controller
 
     public function getSubject(SubjectTeacher $subjectTeacher)
     {
-        return $subjectTeacher->teacher_id;
+        return view('subject', compact('subjectTeacher'));
     }
 
 }

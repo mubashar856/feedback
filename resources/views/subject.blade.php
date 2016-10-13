@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-  Subject Profile
+  {{ $subjectTeacher->subject->subject_name }}
 @endsection
 
 
@@ -12,21 +12,21 @@
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-6">
           <div class="teacher-profile-img">
-            <img src="assets/img/avatar2.png">
+            <img src="../../assets/img/{{ $subjectTeacher->subject->subject_logo }}">
           </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-6">
           <div class="course-profile-bio">
             <span class="course-profile-bio-name">
-              Web Engineering
+              {{ $subjectTeacher->subject->subject_name }}
             </span>
             <br />
             <span class="teacher-profile-bio-email">
-              Computer Science
+              {{ $subjectTeacher->teacher->department->department_name }}
             </span>
             <div class="line-350"></div>
             <span class="teacher-profile-bio-department">
-              Waqar Mahmood
+              {{ $subjectTeacher->teacher->teacher_name }}
             </span>
           </div>
         </div>
@@ -42,8 +42,8 @@
   <div class="container">
     <ol class="breadcrumb">
       <li><a href="/">Home</a></li>
-      <li><a href="/teacher">Waqar Mahmood</a></li>
-      <li class="active">Web Engineering</li>
+      <li><a href="/teacher/{{ $subjectTeacher->teacher_id }}">{{ $subjectTeacher->teacher->teacher_name }}</a></li>
+      <li class="active">{{ $subjectTeacher->subject->subject_name }}</li>
     </ol>
     
     <div class="panel panel-primary">
@@ -51,14 +51,14 @@
         <h3 class="panel-title">Add Comment</h3>
       </div>
       <div class="panel-body">
-        <form>
+        <form method="post" action="/comment/add">
           <div class="form-group">
             <label>Name (optional)</label>
-            <input type="name" class="form-control" placeholder="Enter your name">
+            <input type="name" name="name" class="form-control" placeholder="Enter your name">
           </div>
           <div class="form-group">
             <label>Comment*</label>
-            <textarea rows="3" class="form-control" placeholder="Enter comment"></textarea>
+            <textarea rows="3" name="" class="form-control" placeholder="Enter comment"></textarea>
           </div>
           <button type="submit" class="btn btn-primary">Post</button>
         </form>

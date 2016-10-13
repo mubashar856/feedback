@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-  Teacher Profile
+  {{ $results->teacher_name }}
 @endsection
 
 
