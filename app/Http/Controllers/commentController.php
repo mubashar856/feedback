@@ -30,6 +30,8 @@ class commentController extends Controller
 
     	$comment->save();
 
+        $request->session()->flash('success', 'Comment has been posted successfully');
+
     	return back();
     }
 

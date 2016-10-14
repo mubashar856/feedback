@@ -51,6 +51,9 @@
             @endforeach
         </div>
     @endif
+    @if(\Session::has('success'))
+      <div class="alert alert-success"><b>Yeahhhhh: </b>{{\Session::get('success')}} <span class="glyphicon glyphicon-thumbs-up"></span></div>
+    @endif
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Add Comment</h3>
