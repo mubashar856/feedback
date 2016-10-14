@@ -11,8 +11,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-6">
-          <div class="teacher-profile-img">
-            <img src="../../assets/img/{{ $subjectTeacher->subject->subject_logo }}">
+          <div class="teacher-profile-img" style="background-image: url(../../assets/img/{{ $subjectTeacher->subject->subject_logo }});">
           </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-6">
@@ -81,7 +80,7 @@
       </div>
       <div class="panel-body">
         <ul class="list-group">
-          @if(count($subjectTeacher))
+          @if(count($subjectTeacher->comments))
             @foreach($subjectTeacher->comments as $comment)
               <li class="list-group-item list-group-item-default forum">
                   <div class="row">
@@ -104,6 +103,9 @@
                   </div>
               </li>
             @endforeach
+          @else
+            <div class="alert alert-danger">No one yet commented on this post. Be first to comment :)</div>
+
           @endif
         </ul>
       </div>
