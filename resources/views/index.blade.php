@@ -27,7 +27,6 @@
   </ol>
 
 
-
   <div class="panel panel-primary">
     <div class="panel-heading">
       <h3 class="panel-title">Search Results</h3>

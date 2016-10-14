@@ -12,7 +12,7 @@ use App\Http\Requests;
 
 class commentController extends Controller
 {
-    public function addComment(Comment $comment, Request $request)
+    public function addComment(Request $request)
     {
     	$user_name = $request->user_name;
     	if ($user_name == '') {
@@ -21,9 +21,9 @@ class commentController extends Controller
 
     	$this->validate($request, [
     		'comment' => 'required|min:10',
-    		'subject_teacher_id' => 'required|integer'
+    		'subject_teacher_id' => 'required|integer|exists:subject_teacher,id'
     	]);
-
+        $comment = new Comment();
     	$comment->user_name = $user_name;
     	$comment->comment = $request->comment;
     	$comment->subject_teacher_id = $request->subject_teacher_id;
