@@ -53,11 +53,15 @@
       </div>
       <div class="panel-body">
         <div class="row">
-          @foreach($results->subjects as $subject)
-          <div class="col-lg-3 col-md-3 col-sm-4">
-            <a href="/teacher/subject/{{ $subject->pivot->id }}" class="course">{{ $subject->subject_name }}</a>
-          </div>
-          @endforeach
+          @if(count($results->subjects))
+            @foreach($results->subjects as $subject)
+              <div class="col-lg-3 col-md-3 col-sm-4">
+                <a href="/teacher/subject/{{ $subject->pivot->id }}" class="course">{{ $subject->subject_name }}</a>
+              </div>
+            @endforeach
+          @else
+            <div class="alert alert-info">No subject found</div>
+          @endif
         </div>
       </div>
     </div>

@@ -21,7 +21,7 @@ class commentController extends Controller
 
     	$this->validate($request, [
     		'comment' => 'required|min:10',
-    		'subject_teacher_id' => 'required'
+    		'subject_teacher_id' => 'required|integer'
     	]);
 
     	$comment->user_name = $user_name;
