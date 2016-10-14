@@ -44,6 +44,14 @@ Route::get('/subject/add', 'subjectController@addSubject');
 
 
 
+// Comment routes
+
+Route::post('/comment/add', 'commentController@addComment');
+
+Route::get('teacher/subject/{subjectTeacher}', 'commentController@getComment');
+
+
+
 
 
 Route::get('test', function(){

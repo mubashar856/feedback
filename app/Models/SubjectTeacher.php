@@ -18,4 +18,10 @@ class SubjectTeacher extends Model
     {
     	return $this->belongsTo(Teacher::class);
     }
+
+    public function comments()
+    {
+    	return $this->hasMany(Comment::class);
+    }
+
 }

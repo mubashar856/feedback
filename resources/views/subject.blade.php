@@ -45,22 +45,30 @@
       <li><a href="/teacher/{{ $subjectTeacher->teacher_id }}">{{ $subjectTeacher->teacher->teacher_name }}</a></li>
       <li class="active">{{ $subjectTeacher->subject->subject_name }}</li>
     </ol>
-    
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                {{ $error }}<br />
+            @endforeach
+        </div>
+    @endif
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title">Add Comment</h3>
       </div>
       <div class="panel-body">
         <form method="post" action="/comment/add">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <input type="hidden" name="subject_teacher_id" value="{{ $subjectTeacher->id }}">
           <div class="form-group">
             <label>Name (optional)</label>
-            <input type="name" name="name" class="form-control" placeholder="Enter your name">
+            <input type="name" name="user_name" class="form-control" placeholder="Enter your name">
           </div>
           <div class="form-group">
             <label>Comment*</label>
-            <textarea rows="3" name="" class="form-control" placeholder="Enter comment"></textarea>
+            <textarea rows="3" name="comment" class="form-control" placeholder="Enter comment"></textarea>
           </div>
-          <button type="submit" class="btn btn-primary">Post</button>
+          <button type="submit" class="btn btn-primary">Post Comment</button>
         </form>
       </div>
     </div>
@@ -73,72 +81,30 @@
       </div>
       <div class="panel-body">
         <ul class="list-group">
-          <li class="list-group-item list-group-item-default forum">
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="forum-comment">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut.
-                  </div>
-                </div>
-                <div class="col-md-1">
-                </div>
-                <div class="col-md-4">
-                  <div class="forum-bio">
-                    <img src="assets/img/avatar1.jpg" class="forum-bio-img">
-                    <div class="forum-bio-data">
-                      <span class="forum-bio-data-head">By: </span>Mubashar Ahmed<br />
-                      <span class="forum-bio-data-head">On: </span>Thu Oct 06, 2016 4:19 pm
+          @if(count($subjectTeacher))
+            @foreach($subjectTeacher->comments as $comment)
+              <li class="list-group-item list-group-item-default forum">
+                  <div class="row">
+                    <div class="col-md-7">
+                      <div class="forum-comment">
+                        {{ $comment->comment }}
+                      </div>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-4">
+                      <div class="forum-bio">
+                        <img src="../../assets/img/avatar2.png" class="forum-bio-img">
+                        <div class="forum-bio-data">
+                          <span class="forum-bio-data-head">By: </span>{{ $comment->user_name }}<br />
+                          <span class="forum-bio-data-head">On: </span>{{ $comment->created_at }}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </div>
-          </li>
-          <li class="list-group-item list-group-item-default forum">
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="forum-comment">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut.
-                  </div>
-                </div>
-                <div class="col-md-1">
-                </div>
-                <div class="col-md-4">
-                  <div class="forum-bio">
-                    <img src="assets/img/avatar1.jpg" class="forum-bio-img">
-                    <div class="forum-bio-data">
-                      <span class="forum-bio-data-head">By: </span>Furqan Ahmed<br />
-                      <span class="forum-bio-data-head">On: </span>Thu Oct 06, 2016 4:19 pm
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </li>
-          <li class="list-group-item list-group-item-default forum">
-              <div class="row">
-                <div class="col-md-7">
-                  <div class="forum-comment">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                    quis nostrud exercitation ullamco laboris nisi ut.
-                  </div>
-                </div>
-                <div class="col-md-1">
-                </div>
-                <div class="col-md-4">
-                  <div class="forum-bio">
-                    <img src="assets/img/avatar1.jpg" class="forum-bio-img">
-                    <div class="forum-bio-data">
-                      <span class="forum-bio-data-head">By: </span>Abdul Rehman<br />
-                      <span class="forum-bio-data-head">On: </span>Thu Oct 06, 2016 4:19 pm
-                    </div>
-                  </div>
-                </div>
-              </div>
-          </li>
+              </li>
+            @endforeach
+          @endif
         </ul>
       </div>
     </div>
