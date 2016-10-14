@@ -99,7 +99,7 @@ body{
 .teacher-search-visit{
  	background-color: #30445C;
 	color: #fff;
-	padding: 5px 91px;
+	padding: 5px 80px;
 	display:inline-block;
 	vertical-align:middle;
 	-webkit-transform:translateZ(0);
@@ -159,8 +159,8 @@ body{
 }
 .teacher-profile-img{
 	margin: auto;
-	height: 225px;
-	width: 225px;
+	height: 200px;
+	width: 200px;
 	border-radius: 100%;
 	background-color: #fff;
 	text-align: center;
@@ -175,12 +175,59 @@ body{
 }*/
 .teacher-profile-bio{
 	color: #fff;
-	margin-top: 60px;
 }
 .course-profile-bio{
 	color: #fff;
-	margin-top: 100px;
 }
+
+@media only screen and (min-width: 0px) {
+    .course-profile-bio{
+		margin-top: 30px;
+	}
+	.teacher-profile-bio{
+		margin-top: 30px;
+	}
+}
+
+@media only screen and (min-width: 700px) {
+    .course-profile-bio{
+		margin-top: 30px;
+	}
+	.teacher-profile-bio{
+		margin-top: 30px;
+	}
+}
+
+@media only screen and (min-width: 768px) {
+    .course-profile-bio{
+		margin-top: 100px;
+	}
+	.teacher-profile-bio{
+		margin-top: 60px;
+	}
+}
+
+
+@media only screen and (min-width: 992px) {
+    .course-profile-bio{
+		margin-top: 100px;
+	}
+	.teacher-profile-bio{
+		margin-top: 60px;
+	}
+}
+
+
+@media only screen and (min-width: 1200px) {
+    .course-profile-bio{
+		margin-top: 100px;
+	}
+	.teacher-profile-bio{
+		margin-top: 60px;
+	}
+}
+
+
 .course-profile-bio-name{
 	font-weight: bold;
 	font-size: 20px;
