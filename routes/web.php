@@ -56,7 +56,7 @@ Route::get('/admin/department/{id}/edit', 'departmentController@showEditDepartme
 
 Route::post('/admin/department/edit', 'departmentController@editDepartment');
 
-Route::get('/department/{id}', 'departmentController@showDeparment');
+Route::get('/profile/department/{id}', 'departmentController@showDeparmentProfile');
 
 
 

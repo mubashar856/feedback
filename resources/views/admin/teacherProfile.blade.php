@@ -63,7 +63,7 @@
 				<ul class="list-group">
 			    	@foreach($teacher->subjects as $subject)
 			    		<li class="list-group-item">
-			    			{{ $subject->subject_name }}
+			    			<a href="/admin/subject/{{ $subject->id }}">{{ $subject->subject_name }}</a>
 			    			<a href="/subject/teacher/{{ $subject->pivot->id }}/remove" style="float: right;">
 			    				<span class="glyphicon glyphicon-remove"></span>
 			    			</a>

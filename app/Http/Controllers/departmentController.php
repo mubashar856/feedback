@@ -95,4 +95,12 @@ class departmentController extends Controller
     	return view('admin.showDepartments', compact('departments'));
     }
 
+    public function showDeparmentProfile($id)
+    {
+        $department = Department::find($id);
+
+        return view('admin.departmentProfile', compact('department'));
+    }
+
+
 }
