@@ -23,10 +23,33 @@ Route::post('/', 'teacherController@searchTeacher');
 
 Route::get('/teacher/{id}', 'teacherController@getTeacher');
 
+Route::get('/admin/teachers', 'teacherController@showTeachers');
+
+Route::get('/admin/teacher/add', 'teacherController@showAddTeacher');
+
+Route::post('/admin/teacher/add', 'teacherController@addTeacher');
+
+Route::get('/admin/teacher/{id}/remove', 'teacherController@removeTeacher');
+
+Route::get('/admin/teacher/{id}/edit', 'teacherController@showEditTeacher');
+
+Route::post('/admin/teacher/edit', 'teacherController@editTeacher');
+
 
 
 // department routes
 
+Route::get('/admin/departments', 'departmentController@showDepartments');
+
+Route::get('/admin/department/add', 'departmentController@showAddDepartment');
+
+Route::post('/admin/department/add', 'departmentController@addDepartment');
+
+Route::get('/admin/department/{id}/remove', 'departmentController@removeDepartment');
+
+Route::get('/admin/department/{id}/edit', 'departmentController@showEditDepartment');
+
+Route::post('/admin/department/edit', 'departmentController@editDepartment');
 
 
 
@@ -34,8 +57,17 @@ Route::get('/teacher/{id}', 'teacherController@getTeacher');
 
 Route::get('/teacher/subject/{subjectTeacher}', 'subjectController@getSubject');
 
+Route::get('/admin/subjects', 'subjectController@showSubjects');
 
+Route::get('/admin/subject/add', 'subjectController@showAddSubject');
 
+Route::post('/admin/subject/add', 'subjectController@addSubject');
+
+Route::get('/admin/subject/{id}/remove', 'subjectController@removeSubject');
+
+Route::get('/admin/subject/{id}/edit', 'subjectController@showEditSubject');
+
+Route::post('/admin/subject/edit', 'subjectController@editSubject');
 
 
 
@@ -50,41 +82,7 @@ Route::get('teacher/subject/{subjectTeacher}', 'commentController@getComment');
 
 // Admin route
 
-Route::get('/admin/teachers', 'adminController@showTeachers');
 
-Route::get('/admin/departments', 'adminController@showDepartments');
-
-Route::get('/admin/subjects', 'adminController@showSubjects');
-
-Route::get('/admin/teacher/add', 'adminController@showAddTeacher');
-
-Route::post('/admin/teacher/add', 'adminController@addTeacher');
-
-Route::get('/admin/department/add', 'adminController@showAddDepartment');
-
-Route::post('/admin/department/add', 'adminController@addDepartment');
-
-Route::get('/admin/subject/add', 'adminController@showAddSubject');
-
-Route::post('/admin/subject/add', 'adminController@addSubject');
-
-Route::get('/admin/department/{id}/remove', 'adminController@removeDepartment');
-
-Route::get('/admin/department/{id}/edit', 'adminController@showEditDepartment');
-
-Route::post('/admin/department/edit', 'adminController@editDepartment');
-
-Route::get('/admin/teacher/{id}/remove', 'adminController@removeTeacher');
-
-Route::get('/admin/teacher/{id}/edit', 'adminController@showEditTeacher');
-
-Route::post('/admin/teacher/edit', 'adminController@editTeacher');
-
-Route::get('/admin/subject/{id}/remove', 'adminController@removeSubject');
-
-Route::get('/admin/subject/{id}/edit', 'adminController@showEditSubject');
-
-Route::post('/admin/subject/edit', 'adminController@editSubject');
 
 
 
