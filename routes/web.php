@@ -53,6 +53,37 @@ Route::get('teacher/subject/{subjectTeacher}', 'commentController@getComment');
 
 
 
+// Admin route
+
+Route::get('/admin/teachers', 'adminController@showTeachers');
+
+Route::get('/admin/departments', 'adminController@showDepartments');
+
+Route::get('/admin/subjects', 'adminController@showSubjects');
+
+Route::get('/admin/teacher/add', 'adminController@showAddTeacher');
+
+Route::post('/admin/teacher/add', 'adminController@addTeacher');
+
+Route::get('/admin/department/add', 'adminController@showAddDepartment');
+
+Route::post('/admin/department/add', 'adminController@addDepartment');
+
+Route::get('/admin/subject/add', 'adminController@showAddSubject');
+
+Route::post('/admin/subject/add', 'adminController@addSubject');
+
+Route::get('/admin/department/{id}/remove', 'adminController@removeDepartment');
+
+Route::get('/admin/subject/{{id}}/edit', 'adminController@showEditDepartment');
+
+Route::get('/admin/teacher/{id}/remove', 'adminController@removeTeacher');
+
+Route::get('/admin/subject/{id}/remove', 'adminController@removeSubject');
+
+
+
+
 
 Route::get('test', function(){
 	$searchedName = 'daud';
