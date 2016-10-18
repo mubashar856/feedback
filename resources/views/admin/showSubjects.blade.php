@@ -54,7 +54,7 @@
 						<td>
 							@if(count($subject->teachers))
 								@foreach($subject->teachers as $teacher)
-									{{ $teacher->teacher_name }}, 
+									<a href="/admin/teacher/{{ $teacher->id }}">{{ $teacher->teacher_name }}</a>, 
 								@endforeach
 							@else
 								No Teacher found

@@ -23,38 +23,55 @@ Route::post('/', 'teacherController@searchTeacher');
 
 Route::get('/teacher/{id}', 'teacherController@getTeacher');
 
-Route::get('/admin/teachers', 'teacherController@showTeachers');
-
-Route::get('/admin/teacher/add', 'teacherController@showAddTeacher');
-
-Route::post('/admin/teacher/add', 'teacherController@addTeacher');
-
-Route::get('/admin/teacher/{id}/remove', 'teacherController@removeTeacher');
-
-Route::get('/admin/teacher/{id}/edit', 'teacherController@showEditTeacher');
-
-Route::post('/admin/teacher/edit', 'teacherController@editTeacher');
-
-Route::get('/admin/teacher/{id}', 'teacherController@showTeacherProfile');
-
 Route::post('/teacher/subject/add', 'teacherController@addTeacherSubject');
 
 Route::get('/teacher/subject/{id}/remove', 'teacherController@removeTeacherSubject');
 
 
 // department routes
+Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function ()
+{
+	Route::get('departments', 'departmentController@showDepartments');
 
-Route::get('/admin/departments', 'departmentController@showDepartments');
+	Route::get('department/add', 'departmentController@showAddDepartment');
 
-Route::get('/admin/department/add', 'departmentController@showAddDepartment');
+	Route::post('department/add', 'departmentController@addDepartment');
 
-Route::post('/admin/department/add', 'departmentController@addDepartment');
+	Route::get('department/{id}/remove', 'departmentController@removeDepartment');
 
-Route::get('/admin/department/{id}/remove', 'departmentController@removeDepartment');
+	Route::get('department/{id}/edit', 'departmentController@showEditDepartment');
 
-Route::get('/admin/department/{id}/edit', 'departmentController@showEditDepartment');
+	Route::post('department/edit', 'departmentController@editDepartment');	
 
-Route::post('/admin/department/edit', 'departmentController@editDepartment');
+	Route::get('teachers', 'teacherController@showTeachers');
+
+	Route::get('teacher/add', 'teacherController@showAddTeacher');
+
+	Route::post('teacher/add', 'teacherController@addTeacher');
+
+	Route::get('teacher/{id}/remove', 'teacherController@removeTeacher');
+
+	Route::get('teacher/{id}/edit', 'teacherController@showEditTeacher');
+
+	Route::post('teacher/edit', 'teacherController@editTeacher');
+
+	Route::get('teacher/{id}', 'teacherController@showTeacherProfile');
+
+	Route::get('subjects', 'subjectController@showSubjects');
+
+	Route::get('subject/add', 'subjectController@showAddSubject');
+
+	Route::post('subject/add', 'subjectController@addSubject');
+
+	Route::get('subject/{id}/remove', 'subjectController@removeSubject');
+
+	Route::get('subject/{id}/edit', 'subjectController@showEditSubject');
+
+	Route::post('subject/edit', 'subjectController@editSubject');
+
+	Route::get('subject/{id}', 'subjectController@showSubjectProfile');
+});
+
 
 Route::get('/profile/department/{id}', 'departmentController@showDeparmentProfile');
 
@@ -63,20 +80,6 @@ Route::get('/profile/department/{id}', 'departmentController@showDeparmentProfil
 // subject routes
 
 Route::get('/teacher/subject/{subjectTeacher}', 'subjectController@getSubject');
-
-Route::get('/admin/subjects', 'subjectController@showSubjects');
-
-Route::get('/admin/subject/add', 'subjectController@showAddSubject');
-
-Route::post('/admin/subject/add', 'subjectController@addSubject');
-
-Route::get('/admin/subject/{id}/remove', 'subjectController@removeSubject');
-
-Route::get('/admin/subject/{id}/edit', 'subjectController@showEditSubject');
-
-Route::post('/admin/subject/edit', 'subjectController@editSubject');
-
-Route::get('/admin/subject/{id}', 'subjectController@showSubjectProfile');
 
 Route::post('/subject/teacher/add', 'subjectController@addSubjectTeacher');
 
@@ -97,24 +100,6 @@ Route::get('teacher/subject/{subjectTeacher}', 'commentController@getComment');
 
 
 
+Auth::routes();
 
-Route::get('test', function(){
-	$searchedName = 'daud';
-	$teachers = App\Models\Teacher::with('department')->where('teacher_name', 'like', '%'.$searchedName.'%')->orderBy('department_id')->get();
-    
-    // if ($searchedName) {
-
-    //     $departments = $departments->whereHas('teachers', function($query) use($searchedName)
-    //     {
-    //         $query->where('teacher_name', 'like', '%'.$searchedName.'%');
-    //     });
-    // }
-    // $departments = $departments->first();
-	//dd(count($departments->teachers));
-	foreach ($teachers as $teacher) {
-		echo $teacher->teacher_name.'<br />';
-	}
-	//$teachers = App\Models\Teacher::with('department')->where('department_id', '1')->first();
-	//dd(count($teachers->department));
-	//return count($teachers->department);
-});
+Route::get('/home', 'HomeController@index');
