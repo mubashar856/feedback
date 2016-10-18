@@ -22,16 +22,6 @@ class teacherController extends Controller
 
     }
 
-    public function addteacher(Teacher $teacher)
-    {
-    	$teacher->teacher_name = 'Aleem';
-    	$teacher->teacher_email = 'aleem@check.com';
-    	$teacher->department_id = '2';
-    	$teacher->teacher_picture = 'pic1.jpg';
-    	$teacher->teacher_information = 'This is test information for a teacher. And this can be change in future.';
-    	$teacher->save();
-    	return ('stored successfully');
-    }
 
     public function getTeacher(Teacher $teacher, $id)
     {

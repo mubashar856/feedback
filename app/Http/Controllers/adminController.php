@@ -178,10 +178,104 @@ class adminController extends Controller
 
     public function showEditDepartment($id)
     {
-        $deparpment = Department::find($id);
+        $department = Department::find($id);
 
-        return view
+        return view('admin.editDepartment', compact('department'));
 
+    }
+
+    public function editDepartment(Request $request)
+    {
+        $this->validate($request, [
+            'department_id' => 'required| exists:departments,id',
+            'department_name' => 'required',
+            'department_logo' => 'max:2048|image|mimes:jpeg,png,jpg,gif,svg'
+        ]);
+
+        $department = Department::find($request->department_id);
+
+        $department->department_name = $request->department_name;
+
+        if ($request->department_logo != '') {
+            $department_logo_name = $department->department_logo;
+            if(unlink(public_path('uploads/department/'.$department->department_logo))){
+                $request->department_logo->move(public_path('uploads/department'), $department_logo_name);
+            }
+        }
+        $department->UPDATE();
+        return redirect('/admin/departments');
+    }
+
+    public function showEditTeacher($id)
+    {
+        $teacher = Teacher::find($id);
+
+        return view('admin.editTeacher', compact('teacher'));
+    }
+
+    public function editTeacher(Request $request)
+    {
+        $this->validate($request,[
+            'teacher_id' => 'required',
+            'teacher_name' => 'required',
+            'teacher_picture' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'teacher_information' => 'required|min:10'
+        ]);
+
+        $teacher = Teacher::find($request->teacher_id);
+
+
+        if ($request->teacher_email != $teacher->teacher_email) {
+            $this->validate($request,[
+                'teacher_email' => 'required|email|unique:teachers'
+            ]);
+        }
+
+
+        $teacher->teacher_name = $request->teacher_name;
+        $teacher->teacher_email = $request->teacher_email;
+        $teacher->teacher_information = $request->teacher_information;
+
+        if ($request->teacher_picture != '') {
+            $teacher_picture_name = $teacher->teacher_picture;
+            if(unlink(public_path('uploads/teacher/'.$teacher->teacher_picture))){
+                $request->teacher_picture->move(public_path('uploads/teacher'), $teacher_picture_name);
+            }
+        }
+
+        $teacher->UPDATE();
+
+        return redirect('/admin/teachers');
+    }
+
+    public function showEditSubject($id)
+    {
+        $subject = Subject::find($id);
+
+        return view('admin.editSubject', compact('subject'));
+
+    }
+
+    public function editSubject(Request $request)
+    {
+        $this->validate($request, [
+            'subject_id' => 'required| exists:subjects,id',
+            'subject_name' => 'required',
+            'subject_logo' => 'max:2048|image|mimes:jpeg,png,jpg,gif,svg'
+        ]);
+
+        $subject = Subject::find($request->subject_id);
+
+        $subject->subject_name = $request->subject_name;
+
+        if ($request->subject_logo != '') {
+            $subject_logo_name = $subject->subject_logo;
+            if(unlink(public_path('uploads/subject/'.$subject->subject_logo))){
+                $request->subject_logo->move(public_path('uploads/subject'), $subject_logo_name);
+            }
+        }
+        $subject->UPDATE();
+        return redirect('/admin/subjects');
     }
 
 

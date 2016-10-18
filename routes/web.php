@@ -21,15 +21,11 @@ Route::get('/', function () {
 
 Route::post('/', 'teacherController@searchTeacher');
 
-Route::get('/teacher/add', 'teacherController@addTeacher');
-
 Route::get('/teacher/{id}', 'teacherController@getTeacher');
 
 
 
 // department routes
-
-Route::get('/department/add', 'departmentController@addDepartment');
 
 
 
@@ -38,7 +34,6 @@ Route::get('/department/add', 'departmentController@addDepartment');
 
 Route::get('/teacher/subject/{subjectTeacher}', 'subjectController@getSubject');
 
-Route::get('/subject/add', 'subjectController@addSubject');
 
 
 
@@ -75,12 +70,21 @@ Route::post('/admin/subject/add', 'adminController@addSubject');
 
 Route::get('/admin/department/{id}/remove', 'adminController@removeDepartment');
 
-Route::get('/admin/subject/{{id}}/edit', 'adminController@showEditDepartment');
+Route::get('/admin/department/{id}/edit', 'adminController@showEditDepartment');
+
+Route::post('/admin/department/edit', 'adminController@editDepartment');
 
 Route::get('/admin/teacher/{id}/remove', 'adminController@removeTeacher');
 
+Route::get('/admin/teacher/{id}/edit', 'adminController@showEditTeacher');
+
+Route::post('/admin/teacher/edit', 'adminController@editTeacher');
+
 Route::get('/admin/subject/{id}/remove', 'adminController@removeSubject');
 
+Route::get('/admin/subject/{id}/edit', 'adminController@showEditSubject');
+
+Route::post('/admin/subject/edit', 'adminController@editSubject');
 
 
 

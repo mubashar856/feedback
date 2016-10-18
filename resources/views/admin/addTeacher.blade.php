@@ -42,6 +42,7 @@
 					<option value="0">No department found</option>
 				@endif
 			</select>
+			<p class="help-block">Be careful, Department cannot be changed in furture.</p>
 		</div>
 		<div class="form-group">
 			<label for="teacherPicture">Teacher's Picture</label>
