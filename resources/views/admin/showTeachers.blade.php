@@ -58,7 +58,7 @@
 			@if(count($teachers))
 				@foreach($teachers as $teacher)
 					<tr>
-						<td>{{ $teacher->teacher_name }}</td>
+						<td><a href="/admin/teacher/{{ $teacher->id }}" style="display: block;">{{ $teacher->teacher_name }}</a></td>
 						<td>{{ $teacher->department->department_name }}</td>
 						<td>
 							@if(count($teacher->subjects))
@@ -69,7 +69,7 @@
 								No Subject found
 							@endif
 						</td>
-						<td><a href="/admin/teacher/subject" class="btn btn-primary btn-sm">Add/Remove</a></td>
+						<td><a href="/admin/teacher/{{ $teacher->id }}" class="btn btn-primary btn-sm">Add/Remove</a></td>
 						<td>
 							<div class="btn-group" role="group">
 							  <a href="/admin/teacher/{{ $teacher->id }}/edit" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit Teacher">

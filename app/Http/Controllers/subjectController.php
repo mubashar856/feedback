@@ -6,6 +6,8 @@ use App\Models\Subject;
 
 use App\Models\SubjectTeacher;
 
+use App\Models\Teacher;
+
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -97,6 +99,46 @@ class subjectController extends Controller
     {
     	$subjects = Subject::all();
     	return view('admin.showSubjects', compact('subjects'));
+    }
+
+    public function showSubjectProfile($id)
+    {	
+
+    	$subject = Subject::find($id);
+
+    	$subjectTeacher = SubjectTeacher::where('subject_id', $id)->get(['teacher_id'])->toArray();
+    	
+    	$teachers = Teacher::whereNotIn('id', $subjectTeacher)->get();
+
+    	return view('admin.subjectProfile', compact('subject', 'teachers'));
+    }
+
+    public function addSubjectTeacher(Request $request)
+    {
+    	$this->validate($request, [
+    		'subject_id' => 'required|integer|exists:subjects,id',
+    		'teacher_id' => 'required|integer|exists:teachers,id'
+    	]);
+
+    	$subjectTeacher = new SubjectTeacher();
+
+    	
+        $subjectTeacher->teacher_id = $request->teacher_id;
+
+        $subjectTeacher->subject_id = $request->subject_id;
+
+        $subjectTeacher->save();
+
+        return back();
+    }
+
+    public function removeSubjectTeacher($id)
+    {
+    	$subjectTeacher = SubjectTeacher::find($id);
+
+    	$subjectTeacher->DELETE();
+
+    	return back();
     }
 
 }

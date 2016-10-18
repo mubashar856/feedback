@@ -12,7 +12,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-6">
-          <div class="teacher-profile-img" style="background-image: url(../assets/img/{{ $results->teacher_picture }});">
+          <div class="teacher-profile-img" style="background-image: url({{ public_path('uploads/teacher/'. $results->teacher_picture) }});">
           </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-6">

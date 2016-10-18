@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Teacher;
+
 use App\Models\Department;
+
+use App\Models\Subject;
+
+use App\Models\SubjectTeacher;
 
 use Illuminate\Http\Request;
 
@@ -129,6 +134,17 @@ class teacherController extends Controller
     {
         $teachers = Teacher::all();
         return view('admin.showTeachers', compact('teachers'));
+    }
+
+    public function showTeacherProfile($id)
+    {
+        $teacher = Teacher::find($id);
+
+        $subjectTeacher = SubjectTeacher::where('teacher_id', $id)->get(['subject_id'])->toArray();
+        
+        $subjects = Subject::whereNotIn('id', $subjectTeacher)->get();
+
+        return view('admin.teacherProfile', compact('teacher', 'subjects'));
     }
 
 }

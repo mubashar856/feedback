@@ -40,7 +40,7 @@
 	            <div class="teacher-result">
 	              <div class="teacher-result-outer">
 	                <div class="teacher-result-inner">
-	                  <img src="assets/img/{{ $teacher->teacher_picture }}" class="teacher-search-img"><br /><br />
+	                  <img src="{{ asset('uploads/teacher/'. $teacher->teacher_picture) }}" class="teacher-search-img"><br /><br />
 	                  <span class="teacher-search-name">
 	                    {{ $teacher->teacher_name }}
 	                  </span><br />

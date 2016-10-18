@@ -35,6 +35,11 @@ Route::get('/admin/teacher/{id}/edit', 'teacherController@showEditTeacher');
 
 Route::post('/admin/teacher/edit', 'teacherController@editTeacher');
 
+Route::get('/admin/teacher/{id}', 'teacherController@showTeacherProfile');
+
+Route::post('/teacher/subject/add', 'teacherController@addTeacherSubject');
+
+Route::get('/teacher/subject/{id}/remove', 'teacherController@removeTeacherSubject');
 
 
 // department routes
@@ -50,6 +55,8 @@ Route::get('/admin/department/{id}/remove', 'departmentController@removeDepartme
 Route::get('/admin/department/{id}/edit', 'departmentController@showEditDepartment');
 
 Route::post('/admin/department/edit', 'departmentController@editDepartment');
+
+Route::get('/department/{id}', 'departmentController@showDeparment');
 
 
 
@@ -69,7 +76,11 @@ Route::get('/admin/subject/{id}/edit', 'subjectController@showEditSubject');
 
 Route::post('/admin/subject/edit', 'subjectController@editSubject');
 
+Route::get('/admin/subject/{id}', 'subjectController@showSubjectProfile');
 
+Route::post('/subject/teacher/add', 'subjectController@addSubjectTeacher');
+
+Route::get('/subject/teacher/{id}/remove', 'subjectController@removeSubjectTeacher');
 
 // Comment routes
 
