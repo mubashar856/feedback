@@ -15,7 +15,7 @@
    * @return mixed
    */
   public function handle ( $request, Closure $next ) {
-//   dd(Auth::user()->role);
+   
     if ( Auth::guest() || Auth::user()->role == 'teacher') {
      if ( $request->ajax() || $request->wantsJson() ) {
       return response( 'Unauthorized', 401 );
