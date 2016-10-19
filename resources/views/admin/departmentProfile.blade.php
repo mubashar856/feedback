@@ -50,17 +50,6 @@
 				<th>
 					Teacher Name
 				</th>
-				<th colspan="2">
-					Subjects
-				</th>
-				<th>
-					Update
-				</th>
-			</tr>
-			<tr>
-				<th>
-					
-				</th>
 				<th>
 					Show Subjects
 				</th>
@@ -68,7 +57,7 @@
 					Add/Remove Subjects
 				</th>
 				<th>
-					
+					Update
 				</th>
 			</tr>
 		</thead>

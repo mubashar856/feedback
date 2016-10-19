@@ -24,17 +24,6 @@
 				<th>
 					Subject Name
 				</th>
-				<th colspan="2">
-					Teachers
-				</th>
-				<th>
-					Update
-				</th>
-			</tr>
-			<tr>
-				<th>
-					
-				</th>
 				<th>
 					Show Teachers
 				</th>
@@ -42,7 +31,7 @@
 					Add/Remove Teacher
 				</th>
 				<th>
-					
+					Update
 				</th>
 			</tr>
 		</thead>
