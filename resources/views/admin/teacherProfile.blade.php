@@ -14,7 +14,7 @@
 	@if(\Session::has('success'))
         <div class="alert alert-success"><b>Hey Admin: </b>{{\Session::get('success')}} <span class="glyphicon glyphicon-thumbs-up"></span></div>
     @elseif(\Session::has('danger'))
-    	<div class="alert alert-danger"><b>Hey Admin: </b>{{\Session::get('success')}} </div>
+    	<div class="alert alert-danger"><b>Hey Admin: </b>{{\Session::get('danger')}} </div>
     @endif	
 		
 
@@ -43,9 +43,18 @@
     <div class="row">
     	<div class="col-md-6">
     		<h3>Assign subject to this teacher</h3>
+
 		    <form method="post" action="/subject/teacher/add">
 		    	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		    	<input type="hidden" name="teacher_id" value="{{ $teacher->id }}">
+				<div class="form-group">
+					<label for="semesters">Select Semester</label>
+					<select name="semester_id" id="semesters" class="form-control">
+						@foreach($semesters as $semester)
+							<option value="{{ $semester->id }}">{{ $semester->semester_name }}</option>
+						@endforeach
+					</select>
+				</div>
 				<div class="form-group">
 					<label for="subjects">Select Subject</label>
 					<select name="subject_id" id="subjects" class="form-control">
@@ -59,12 +68,13 @@
     	</div>
     	<div class="col-md-6">
     		<h3>Assigned subjects to this teacher</h3>
-			@if(count($teacher->subjects))
+			@if(count($teacher->subjectTeachers))
 				<ul class="list-group">
-			    	@foreach($teacher->subjects as $subject)
+			    	@foreach($teacher->subjectTeachers as $subjectTeacher)
 			    		<li class="list-group-item">
-			    			<a href="/admin/subject/{{ $subject->id }}">{{ $subject->subject_name }}</a>
-			    			<a href="/subject/teacher/{{ $subject->pivot->id }}/remove" style="float: right;">
+                            {{ $subjectTeacher->semester->semester_name }} ->
+                            <a href="/admin/subject/{{ $subjectTeacher->subject_id }}">{{ $subjectTeacher->subject->subject_name }}</a>
+			    			<a href="/subject/teacher/{{ $subjectTeacher->id }}/remove" style="float: right;">
 			    				<span class="glyphicon glyphicon-remove"></span>
 			    			</a>
 			    		</li>

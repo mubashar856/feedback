@@ -66,9 +66,16 @@
                 <li><a href="/admin/subjects">View Subjects</a></li>
               </ul>
             </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Semester <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="/admin/semester/add">Add Semester</a></li>
+                <li><a href="/admin/semesters">View Semesters</a></li>
+              </ul>
+            </li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="">Logout</a></li>
+            <li><a href="/admin/logout">Logout</a></li>
           </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->

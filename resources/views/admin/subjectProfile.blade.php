@@ -46,6 +46,14 @@
 		    	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		    	<input type="hidden" name="subject_id" value="{{ $subject->id }}">
 				<div class="form-group">
+					<label for="semesters">Select Semester</label>
+					<select name="semester_id" id="semesters" class="form-control">
+						@foreach($semesters as $semester)
+							<option value="{{ $semester->id }}">{{ $semester->semester_name }}</option>
+						@endforeach
+					</select>
+				</div>
+				<div class="form-group">
 					<label for="teachers">Select Teacher</label>
 					<select name="teacher_id" id="teachers" class="form-control">
 			    		@foreach($teachers as $teacher)
@@ -58,12 +66,13 @@
     	</div>
     	<div class="col-md-6">
     		<h3>Assigned teachers to this subject</h3>
-			@if(count($subject->teachers))
+			@if(count($subject->subjectTeachers))
 				<ul class="list-group">
-			    	@foreach($subject->teachers as $teacher)
+			    	@foreach($subject->subjectTeachers as $subjectTeacher)
 			    		<li class="list-group-item">
-			    			<a href="/admin/teacher/{{ $teacher->id }}">{{ $teacher->teacher_name }}</a>
-			    			<a href="/subject/teacher/{{ $teacher->pivot->id }}/remove" style="float: right;">
+							{{ $subjectTeacher->semester->semester_name }} -> 
+			    			<a href="/admin/teacher/{{ $subjectTeacher->teacher_id }}">{{ $subjectTeacher->teacher->teacher_name }}</a>
+			    			<a href="/subject/teacher/{{ $subjectTeacher->id }}/remove" style="float: right;">
 			    				<span class="glyphicon glyphicon-remove"></span>
 			    			</a>
 			    		</li>

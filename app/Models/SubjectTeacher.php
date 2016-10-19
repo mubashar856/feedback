@@ -24,4 +24,8 @@ class SubjectTeacher extends Model
     	return $this->hasMany(Comment::class);
     }
 
+    public function semester(){
+        return $this->belongsTo(Semester::class);
+    }
+
 }

@@ -1,11 +1,10 @@
-
 <?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSubjectsTeachersTable extends Migration
+class CreateSemestersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,11 +13,10 @@ class CreateSubjectsTeachersTable extends Migration
      */
     public function up()
     {
-        Schema::create('subject_teacher', function (Blueprint $table) {
+        Schema::create('semesters', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('teacher_id')->unsigned();
-            $table->integer('subject_id')->unsigned();
-            $table->integer('semester_id')->unsigned();
+            $table->string('semester_name');
+            $table->string('semester_status');
             $table->timestamps();
         });
     }
@@ -30,6 +28,6 @@ class CreateSubjectsTeachersTable extends Migration
      */
     public function down()
     {
-        Schema::drop('subjects_teachers');
+        Schema::drop('semesters');
     }
 }

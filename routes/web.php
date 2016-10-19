@@ -70,6 +70,16 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function ()
 	Route::post('subject/edit', 'subjectController@editSubject');
 
 	Route::get('subject/{id}', 'subjectController@showSubjectProfile');
+
+	Route::get('logout', 'adminController@logout');
+
+	Route::get('semester/add', 'semesterController@showAddSemester');
+
+	Route::post('semester/add', 'semesterController@addSemester');
+
+	Route::get('semesters', 'semesterController@showSemesters');
+
+	Route::get('semester/{semester}/new-status/{status}', 'semesterController@changeStatus');
 });
 
 

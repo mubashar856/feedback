@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Semester;
 use App\Models\Subject;
 
 use App\Models\SubjectTeacher;
@@ -106,28 +107,36 @@ class subjectController extends Controller
 
     	$subject = Subject::find($id);
 
-    	$subjectTeacher = SubjectTeacher::where('subject_id', $id)->get(['teacher_id'])->toArray();
+    	$semesters = Semester::where('semester_status', '1')->get();
     	
-    	$teachers = Teacher::whereNotIn('id', $subjectTeacher)->get();
+    	$teachers = Teacher::all();
 
-    	return view('admin.subjectProfile', compact('subject', 'teachers'));
+    	return view('admin.subjectProfile', compact('subject', 'teachers', 'semesters'));
     }
 
     public function addSubjectTeacher(Request $request)
     {
     	$this->validate($request, [
-    		'subject_id' => 'required|integer|exists:subjects,id',
+            'semester_id' => 'required|integer|exists:semesters,id',
+            'subject_id' => 'required|integer|exists:subjects,id',
     		'teacher_id' => 'required|integer|exists:teachers,id'
     	]);
 
-    	$subjectTeacher = new SubjectTeacher();
+        $check = SubjectTeacher::where('subject_id', $request->subject_id)->where('semester_id', $request->semester_id)->where('teacher_id', $request->teacher_id)->get();
 
-    	
-        $subjectTeacher->teacher_id = $request->teacher_id;
+        if(count($check)){
+           session()->flash('danger', 'record already exists');
+        }else{
+            $subjectTeacher = new SubjectTeacher();
 
-        $subjectTeacher->subject_id = $request->subject_id;
+            $subjectTeacher->teacher_id = $request->teacher_id;
 
-        $subjectTeacher->save();
+            $subjectTeacher->subject_id = $request->subject_id;
+
+            $subjectTeacher->semester_id = $request->semester_id;
+
+            $subjectTeacher->save();
+        }
 
         return back();
     }

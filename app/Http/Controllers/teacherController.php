@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Semester;
 use App\Models\Teacher;
 
 use App\Models\Department;
@@ -95,6 +96,7 @@ class teacherController extends Controller
     {       
         $departments = Department::all();
 
+
         return view('admin.addTeacher', compact('departments'));
     }
 
@@ -140,11 +142,13 @@ class teacherController extends Controller
     {
         $teacher = Teacher::find($id);
 
-        $subjectTeacher = SubjectTeacher::where('teacher_id', $id)->get(['subject_id'])->toArray();
-        
-        $subjects = Subject::whereNotIn('id', $subjectTeacher)->get();
+        $semesters = Semester::where('semester_status', '1')->get();
 
-        return view('admin.teacherProfile', compact('teacher', 'subjects'));
+        $subjects = Subject::all();
+
+
+
+        return view('admin.teacherProfile', compact('teacher', 'subjects', 'semesters'));
     }
 
 }

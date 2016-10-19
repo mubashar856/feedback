@@ -12,6 +12,11 @@ class Teacher extends Model
     }
     public function subjects()
     {
-    	return $this->belongsToMany(Subject::class)->withPivot('id');
+    	return $this->belongsToMany(Subject::class)->withPivot('id', 'semester_id');
+    }
+
+    public function subjectTeachers()
+    {
+        return $this->hasMany(SubjectTeacher::class);
     }
 }
