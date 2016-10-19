@@ -68,14 +68,17 @@ class departmentController extends Controller
     {
         $this->validate($request, [
             'department_name' => 'required',
-            'department_logo' => 'required|max:2048|image|mimes:jpeg,png,jpg,gif,svg'
+            'department_logo' => 'max:2048|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         $department = new Department();
 
-        $department_logo_name = $request->department_name.'-'.rand(100, 999).'.'.$request->department_logo->getClientOriginalExtension();
-
-        $request->department_logo->move(public_path('uploads/department'), $department_logo_name);
+        if($request->department_logo != '') {
+            $department_logo_name = $request->department_name.'-'.rand(100, 999).'.'.$request->department_logo->getClientOriginalExtension();
+            $request->department_logo->move(public_path('uploads/department'), $department_logo_name);
+        }else{
+            $department_logo_name = 'default.png';
+        }
 
         $department->department_name = $request->department_name;
 

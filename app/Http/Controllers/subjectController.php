@@ -75,14 +75,17 @@ class subjectController extends Controller
     {
         $this->validate($request, [
             'subject_name' => 'required',
-            'subject_logo' => 'required|max:2048|image|mimes:jpeg,png,jpg,gif,svg'
+            'subject_logo' => 'max:2048|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
 
         $subject = new Subject();
 
-        $subject_logo_name = $request->subject_name.'-'.rand(100, 999).'.'.$request->subject_logo->getClientOriginalExtension();
-
-        $request->subject_logo->move(public_path('uploads/subject'), $subject_logo_name);
+        if($request->subject_logo != ''){
+            $subject_logo_name = $request->subject_name.'-'.rand(100, 999).'.'.$request->subject_logo->getClientOriginalExtension();
+            $request->subject_logo->move(public_path('uploads/subject'), $subject_logo_name);
+        }else{
+            $subject_logo_name = 'default.png';
+        }
 
         $subject->subject_name = $request->subject_name;
 

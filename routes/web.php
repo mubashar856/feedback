@@ -80,6 +80,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function ()
 	Route::get('semesters', 'semesterController@showSemesters');
 
 	Route::get('semester/{semester}/new-status/{status}', 'semesterController@changeStatus');
+
+	Route::get('/', function (){
+        return view('admin.index');
+    });
 });
 
 
