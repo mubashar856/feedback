@@ -11,7 +11,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-6">
-          <div class="teacher-profile-img" style="background-image: url(../../assets/img/{{ $subjectTeacher->subject->subject_logo }});">
+          <div class="teacher-profile-img" style="background-image: url('{{ asset('uploads/subject/'.$subjectTeacher->subject->subject_logo)}}');">
           </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-6">
