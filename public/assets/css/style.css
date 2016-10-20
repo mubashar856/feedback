@@ -33,12 +33,11 @@ body{
 .main-header-inner{
 	background-color: rgba(0, 0, 0, 0.3);
 	width: 100%;
-	height: 350px;
 }
+
 .search-box{
 	margin: auto;
 	position: relative;
-	top: 150px;
 	width: 60%;
 }
 
@@ -187,6 +186,12 @@ body{
 	.teacher-profile-bio{
 		margin-top: 30px;
 	}
+    .main-header-inner{
+        height: 200px;
+    }
+    .search-box{
+        top: 80px;
+    }
 }
 
 @media only screen and (min-width: 700px) {
@@ -196,6 +201,12 @@ body{
 	.teacher-profile-bio{
 		margin-top: 30px;
 	}
+    .main-header-inner{
+        height: 350px;
+    }
+    .search-box{
+        top: 150px;
+    }
 }
 
 @media only screen and (min-width: 768px) {
@@ -205,6 +216,12 @@ body{
 	.teacher-profile-bio{
 		margin-top: 60px;
 	}
+    .main-header-inner{
+        height: 350px;
+    }
+    .search-box{
+        top: 150px;
+    }
 }
 
 
@@ -215,17 +232,15 @@ body{
 	.teacher-profile-bio{
 		margin-top: 60px;
 	}
+    .main-header-inner{
+        height: 350px;
+    }
+    .search-box{
+        top: 150px;
+    }
 }
 
 
-@media only screen and (min-width: 1200px) {
-    .course-profile-bio{
-		margin-top: 100px;
-	}
-	.teacher-profile-bio{
-		margin-top: 60px;
-	}
-}
 
 
 .course-profile-bio-name{
