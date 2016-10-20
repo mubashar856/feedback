@@ -50,10 +50,18 @@ class subjectController extends Controller
 
         if ($request->subject_logo != '') {
             $subject_logo_name = $subject->subject_logo;
-            if(unlink(public_path('uploads/subject/'.$subject->subject_logo))){
+            if ($subject->subject_logo != 'default.png'){
+                if(unlink(public_path('uploads/subject/'.$subject->subject_logo))){
+                    $request->subject_logo->move(public_path('uploads/subject'), $subject_logo_name);
+                }
+            }else{
+                $subject_logo_name = $request->subject_name.'-'.rand(100, 999).'.'.$request->subject_logo->getClientOriginalExtension();
                 $request->subject_logo->move(public_path('uploads/subject'), $subject_logo_name);
             }
+            $subject->subject_logo = $subject_logo_name;
         }
+
+
         $subject->UPDATE();
         return redirect('/admin/subjects');
     }

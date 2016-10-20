@@ -67,9 +67,9 @@
 					<tr>
 						<td><a href="/admin/teacher/{{ $teacher->id }}" style="display: block;">{{ $teacher->teacher_name }}</a></td>
 						<td>
-							@if(count($teacher->subjects))
-								@foreach($teacher->subjects as $subject)
-									{{ $subject->subject_name }}, 
+							@if(count($teacher->subjectTeachers))
+								@foreach($teacher->subjectTeachers as $subjectTeacher)
+									<a href="/admin/subject/{{ $subjectTeacher->subject->id }}"> {{ $subjectTeacher->subject->subject_name }} ({{ $subjectTeacher->semester->semester_name }})</a>,
 								@endforeach
 							@else
 								No Subject found

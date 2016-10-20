@@ -35,9 +35,15 @@ class departmentController extends Controller
 
         if ($request->department_logo != '') {
             $department_logo_name = $department->department_logo;
-            if(unlink(public_path('uploads/department/'.$department->department_logo))){
+            if ($department->department_logo != 'default.png'){
+                if(unlink(public_path('uploads/department/'.$department->department_logo))){
+                    $request->department_logo->move(public_path('uploads/department'), $department_logo_name);
+                }
+            }else{
+                $department_logo_name = $request->department_name.'-'.rand(100, 999).'.'.$request->department_logo->getClientOriginalExtension();
                 $request->department_logo->move(public_path('uploads/department'), $department_logo_name);
             }
+            $department->department_logo = $department_logo_name;
         }
         $department->UPDATE();
         return redirect('/admin/departments');
