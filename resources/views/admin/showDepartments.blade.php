@@ -35,7 +35,7 @@
 			@if(count($departments))
 				@foreach($departments as $department)
 					<tr>
-						<td><a href="/profile/department/{{ $department->id }}" style="display: block;">{{ $department->department_name }}</a></td>
+						<td><a href="/admin/profile/department/{{ $department->id }}" style="display: block;">{{ $department->department_name }}</a></td>
 						<td>
 							<div class="btn-group" role="group">
 							  <a href="/admin/department/{{ $department->id }}/edit" class="btn btn-info btn-sm" data-toggle="tooltip" data-placement="top" title="Edit Department">

@@ -42,7 +42,7 @@
     <div class="row">
     	<div class="col-md-6">
     		<h3>Assign teacher to this subject</h3>
-		    <form method="post" action="/subject/teacher/add">
+		    <form method="post" action="/admin/subject/teacher/add">
 		    	<input type="hidden" name="_token" value="{{ csrf_token() }}">
 		    	<input type="hidden" name="subject_id" value="{{ $subject->id }}">
 				<div class="form-group">
@@ -72,7 +72,7 @@
 			    		<li class="list-group-item">
 							{{ $subjectTeacher->semester->semester_name }} ->
 			    			<a href="/admin/teacher/{{ $subjectTeacher->teacher_id }}">{{ $subjectTeacher->teacher->teacher_name }}</a>
-			    			<a href="/subject/teacher/{{ $subjectTeacher->id }}/remove" style="float: right;">
+			    			<a href="/admin/subject/teacher/{{ $subjectTeacher->id }}/remove" style="float: right;">
 			    				<span class="glyphicon glyphicon-remove"></span>
 			    			</a>
 			    		</li>

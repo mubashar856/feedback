@@ -20,6 +20,7 @@ class CreateTeachersTable extends Migration
             $table->integer('department_id')->unsigned();
             $table->string('teacher_picture');
             $table->text('teacher_information');
+            $table->string('slug');
             $table->timestamps();
         });
     }

@@ -45,7 +45,7 @@
 				@foreach($teachers as $teacher)
 					<tr>
 						<td><a href="/admin/teacher/{{ $teacher->id }}" style="display: block;">{{ $teacher->teacher_name }}</a></td>
-						<td><a href="/profile/department/{{ $teacher->department->id }}">{{ $teacher->department->department_name }}</a></td>
+						<td><a href="/admin/profile/department/{{ $teacher->department->id }}">{{ $teacher->department->department_name }}</a></td>
 						<td>
 							@if(count($teacher->subjects))
 								@foreach($teacher->subjects as $subject)
