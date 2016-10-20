@@ -17,8 +17,14 @@ class subjectController extends Controller
 {
 
 
-    public function getSubject(SubjectTeacher $subjectTeacher)
+    public function getSubject($teacher, $semester, $subject)
     {
+        $teacherId = Teacher::where('slug', $teacher)->first()->id;
+        $semesterId = Semester::where('slug', $semester)->first()->id;
+        $subjectId = Subject::where('slug', $subject)->first()->id;
+
+        $subjectTeacher = SubjectTeacher::where('teacher_id', $teacherId)->where('subject_id', $subjectId)->where('semester_id', $semesterId)->first();
+
         return view('subject', compact('subjectTeacher'));
     }
 

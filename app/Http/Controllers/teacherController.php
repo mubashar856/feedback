@@ -29,10 +29,10 @@ class teacherController extends Controller
     }
 
 
-    public function getTeacher(Teacher $teacher, $id)
+    public function getTeacher($slug)
     {
-    	$results = Teacher::where('id', $id)->first();
-    	return view('profile', compact('results'));
+    	$teacher = Teacher::where('slug', $slug)->first();
+    	return view('profile', compact('teacher'));
     }
 
     public function showEditTeacher($id)

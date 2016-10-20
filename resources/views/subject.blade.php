@@ -17,11 +17,12 @@
         <div class="col-lg-5 col-md-5 col-sm-6">
           <div class="course-profile-bio">
             <span class="course-profile-bio-name">
-              {{ $subjectTeacher->subject->subject_name }}
+                {{ $subjectTeacher->subject->subject_name }}
+                ( {{ $subjectTeacher->semester->semester_name }} )
             </span>
             <br />
             <span class="teacher-profile-bio-email">
-              {{ $subjectTeacher->teacher->department->department_name }}
+                {{ $subjectTeacher->teacher->department->department_name }}
             </span>
             <div class="line-350"></div>
             <span class="teacher-profile-bio-department">
@@ -41,7 +42,7 @@
   <div class="container">
     <ol class="breadcrumb">
       <li><a href="/">Home</a></li>
-      <li><a href="/teacher/{{ $subjectTeacher->teacher_id }}">{{ $subjectTeacher->teacher->teacher_name }}</a></li>
+      <li><a href="/teacher/{{ $subjectTeacher->teacher->slug }}">{{ $subjectTeacher->teacher->teacher_name }}</a></li>
       <li class="active">{{ $subjectTeacher->subject->subject_name }}</li>
     </ol>
     @if (count($errors) > 0)

@@ -47,7 +47,7 @@
 	                  <span class="department-search-name">
 	                    {{ $teacher->department->department_name }}
 	                  </span><br />
-	                  <a href="/teacher/{{ $teacher->id }}" class="teacher-search-visit">profile</a>
+	                  <a href="/teacher/{{ $teacher->slug }}" class="teacher-search-visit">profile</a>
 	                </div>
 	              </div>
 	            </div>

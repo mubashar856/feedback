@@ -35,9 +35,4 @@ class commentController extends Controller
     	return back();
     }
 
-    public function getComment(SubjectTeacher $subjectTeacher)
-    {
-    	return view('subject', compact('subjectTeacher'));
-    }
-
 }

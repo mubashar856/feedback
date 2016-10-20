@@ -85,14 +85,13 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function ()
 
 // teacher routes
 Route::post('/', 'teacherController@searchTeacher');
-Route::get('/teacher/{id}', 'teacherController@getTeacher');
+Route::get('/teacher/{slug}', 'teacherController@getTeacher');
 
 // subject routes
-Route::get('/teacher/subject/{subjectTeacher}', 'subjectController@getSubject');
+Route::get('{teacher}/{semester}/{subject}', 'subjectController@getSubject');
 
 // Comment routes
 Route::post('/comment/add', 'commentController@addComment');
-Route::get('teacher/subject/{subjectTeacher}', 'commentController@getComment');
 
 //auth predefined routes
 Auth::routes();

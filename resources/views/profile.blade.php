@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-  {{ $results->teacher_name }}
+  {{ $teacher->teacher_name }}
 @endsection
 
 
@@ -12,23 +12,23 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-3 col-md-3 col-sm-6">
-          <div class="teacher-profile-img" style="background-image: url('{{ asset('/uploads/teacher/'.$results->teacher_picture)}}');">
+          <div class="teacher-profile-img" style="background-image: url('{{ asset('/uploads/teacher/'.$teacher->teacher_picture)}}');">
           </div>
         </div>
         <div class="col-lg-5 col-md-5 col-sm-6">
           <div class="teacher-profile-bio">
             <span class="teacher-profile-bio-name">
-              {{ $results->teacher_name }}
+              {{ $teacher->teacher_name }}
             </span>
             <span class="teacher-profile-bio-department">
-              [ {{ $results->department->department_name }} ]
+              [ {{ $teacher->department->department_name }} ]
             </span><br />
             <span class="teacher-profile-bio-email">
-              {{ $results->teacher_email }}
+              {{ $teacher->teacher_email }}
             </span>
             <div class="line-350"></div>
             <div class="teacher-bio">
-              {{ $results->teacher_information }}
+              {{ $teacher->teacher_information }}
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@
   <div class="container">
     <ol class="breadcrumb">
       <li><a href="/">Home</a></li>
-      <li class="active">{{ $results->teacher_name }}</li>
+      <li class="active">{{ $teacher->teacher_name }}</li>
     </ol>
     
     <div class="panel panel-primary">
@@ -53,10 +53,10 @@
       </div>
       <div class="panel-body">
         <div class="row">
-          @if(count($results->subjects))
-            @foreach($results->subjects as $subject)
+          @if(count($teacher->subjectTeachers))
+            @foreach($teacher->subjectTeachers as $subjectTeacher)
               <div class="col-lg-3 col-md-3 col-sm-4">
-                <a href="/teacher/subject/{{ $subject->pivot->id }}" class="course">{{ $subject->subject_name }}</a>
+                <a href="/{{ $teacher->slug }}/{{ $subjectTeacher->semester->slug }}/{{ $subjectTeacher->subject->slug }}" class="course">{{ $subjectTeacher->subject->subject_name }} ( {{ $subjectTeacher->semester->semester_name }} )</a>
               </div>
             @endforeach
           @else
