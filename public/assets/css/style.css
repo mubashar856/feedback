@@ -202,10 +202,10 @@ body{
 		margin-top: 30px;
 	}
     .main-header-inner{
-        height: 350px;
+        height: 300px;
     }
     .search-box{
-        top: 150px;
+        top: 120px;
     }
 }
 
@@ -217,10 +217,10 @@ body{
 		margin-top: 60px;
 	}
     .main-header-inner{
-        height: 350px;
+        height: 300px;
     }
     .search-box{
-        top: 150px;
+        top: 120px;
     }
 }
 
@@ -236,7 +236,7 @@ body{
         height: 350px;
     }
     .search-box{
-        top: 150px;
+        top: 140px;
     }
 }
 
