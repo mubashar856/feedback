@@ -14,6 +14,7 @@
 
     <!-- custom -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/animate.css') }}">
 
 
 
@@ -39,7 +40,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Feedback</a>
+          <a class="navbar-brand" href="/admin">Feedback</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->

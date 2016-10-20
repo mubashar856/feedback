@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:100&subset=latin-ext');
+
+
 .black{
 	background-color: #000;
 	width: 100%;
@@ -348,4 +351,21 @@ body{
 }
 
 
+
+.admin-box{
+    margin:auto;
+    margin-top: 150px;
+    text-align: center;
+    font-family: 'Work Sans', sans-serif;
+}
+.admin-h2{
+    font-weight: 100;
+    font-size: 55px;
+    letter-spacing: 25px;
+}
+.admin-h1{
+    font-weight: 100;
+    font-size: 100px;
+    line-height: 50px;
+}
 
