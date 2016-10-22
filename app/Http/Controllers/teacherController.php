@@ -38,8 +38,9 @@ class teacherController extends Controller
     public function showEditTeacher($id)
     {
         $teacher = Teacher::find($id);
+        $departments = Department::all();
 
-        return view('admin.editTeacher', compact('teacher'));
+        return view('admin.editTeacher', compact('teacher', 'departments'));
     }
 
     public function editTeacher(Request $request)
