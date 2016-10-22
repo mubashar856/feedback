@@ -17,7 +17,7 @@ use App\Http\Requests;
 
 class teacherController extends Controller
 {
-    public function searchTeacher(Teacher $teacher, Request $request)
+    public function searchTeacher(Request $request)
     {
     	$searchedName =  $request->teacher_name;
     	
