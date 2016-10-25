@@ -152,4 +152,10 @@ class teacherController extends Controller
         return view('admin.teacherProfile', compact('teacher', 'subjects', 'semesters'));
     }
 
+    public function getRecommendedResults(Request $request){
+        $teachers = Teacher::where('teacher_name', 'LIKE', '%'.$request->search.'%')->get(['teacher_name', 'slug'])->toJson();
+
+        return $teachers;
+    }
+
 }

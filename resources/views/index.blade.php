@@ -14,16 +14,18 @@
                 <h1 class="main-search-heading animated">Search Teacher</h1>
                 <div class="search-box animated">
                     <form method="post" action="/">
-                        <input type="text" name="teacher_name" class="search-field" placeholder="Teacher name">
+                        <input type="text" name="teacher_name" id="search-field" class="search-field" placeholder="Teacher name">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <button type="submit" class="search-btn">Search</button>
                     </form>
                 </div>
+                <div class="list-group" id="relatedResults"></div>
             </div>
         </div>
     </div>
 
     <br />
+
     <div class="container">
         <ol class="breadcrumb">
             <li class="active">Home</li>
@@ -75,6 +77,7 @@
 
 @section('customJs')
     <script>
+        var check;
         $(document).ready(function(){
             $('.search-box').mouseenter(function(){
                 $('.main-search-heading').addClass('fadeOutUp');
@@ -84,6 +87,32 @@
                 $('.main-search-heading').removeClass('fadeOutUp');
                 $('.main-search-heading').addClass('fadeInDown');
             });
+
+            $('#search-field').keyup(function(){
+                var text = $('#search-field').val();
+                if (text != ''){
+                    $.ajax({
+                        url: '/teacher/search/recommended',
+                        type: 'POST',
+                        headers: {"x-csrf-token":"{{csrf_token()}}"},
+                        data: {
+                            search: text
+                        },
+                        success: function(data){
+                            var obj = JSON.parse(data);
+                            $('#relatedResults').html('');
+                            for (var i=0; i<obj.length; i++){
+                                var teacherName = obj[i].teacher_name;
+                                var teacherSlug = obj[i].slug;
+                                $('#relatedResults').append('<a href="/teacher/'+teacherSlug+'" class="list-group-item">'+teacherName+'</a>');
+                            }
+                        }
+                    });
+                }else{
+                    $('#relatedResults').html('');
+                }
+            });
+
         });
 
     </script>

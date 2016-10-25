@@ -87,6 +87,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function ()
 Route::post('/', 'teacherController@searchTeacher');
 Route::get('/teacher/{slug}', 'teacherController@getTeacher');
 
+Route::post('/teacher/search/recommended', 'teacherController@getRecommendedResults');
+
 // subject routes
 Route::get('{teacher}/{semester}/{subject}', 'subjectController@getSubject');
 

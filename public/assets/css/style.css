@@ -42,6 +42,18 @@ body{
     margin: auto;
     position: relative;
 }
+
+#relatedResults{
+    margin: auto;
+}
+#relatedResults a:first-child{
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+#relatedResults a:last-child{
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
 .search-field{
     border: 0;
     background-color: rgba(217, 217, 217, 0.7);
@@ -331,7 +343,7 @@ body{
     .search-header{
         padding-top: 80px;
     }
-    .search-box{
+    .search-box, #relatedResults{
         width: 85%;
     }
 }
@@ -352,7 +364,7 @@ body{
     .search-header{
         padding-top: 75px;
     }
-    .search-box{
+    .search-box, #relatedResults{
         width: 70%;
     }
 }
@@ -373,7 +385,7 @@ body{
     .search-header{
         padding-top: 75px;
     }
-    .search-box{
+    .search-box, #relatedResults{
         width: 60%;
     }
 }
@@ -395,7 +407,7 @@ body{
     .search-header{
         padding-top: 100px;
     }
-    .search-box{
+    .search-box, #relatedResults{
         width: 60%;
     }
 }
