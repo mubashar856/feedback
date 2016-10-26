@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 
 
+use App\Models\Teacher;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -54,6 +56,11 @@ class departmentController extends Controller
     {      
         $department = Department::find($id);
         if (unlink(public_path('uploads/department/'.$department->department_logo))) {
+            $teachers = Teacher::where('department_id', $department->id)->get();
+            foreach ($teachers as $teacher){
+                User::where('id', $teacher->user_id)->delete();
+            }
+            Teacher::where('department_id', $department->id)->delete();
             if ($department->DELETE()) {
                 session()->flash('success', 'Department deleted successfully');
             }else{

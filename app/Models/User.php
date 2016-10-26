@@ -34,6 +34,9 @@ class User extends Authenticatable
         return User::where('role', '$role')->get();
     }
 
+    public function teacher(){
+        return $this->hasOne(Teacher::class);
+    }
 //    public function getRoleAttribute($value, $role)
 //    {
 //        if ($value == $role){
