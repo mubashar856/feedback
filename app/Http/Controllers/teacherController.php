@@ -11,9 +11,12 @@ use App\Models\Subject;
 
 use App\Models\SubjectTeacher;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class teacherController extends Controller
 {
@@ -112,20 +115,29 @@ class teacherController extends Controller
             'teacher_information' => 'required|min:10'
         ]);
 
+        $user = new User();
 
-        $teacher_picture_new_name = $request->teacher_name.'-'.rand(100,999).'.'.$request->teacher_picture->getClientOriginalExtension();
+        $user->name = $request->teacher_name;
+        $user->email = $request->teacher_email;
+        $user->password = bcrypt('teacher');
+        $usr->check_password = 0;
+        $user->role = 'teacher';
+        if($user->save()){
 
-        $request->teacher_picture->move(public_path('uploads/teacher'), $teacher_picture_new_name);
+            $teacher_picture_new_name = $request->teacher_name.'-'.rand(100,999).'.'.$request->teacher_picture->getClientOriginalExtension();
+            $request->teacher_picture->move(public_path('uploads/teacher'), $teacher_picture_new_name);
 
-
-        $teacher = new Teacher();
-
-        $teacher->teacher_name = $request->teacher_name;
-        $teacher->teacher_email = $request->teacher_email;
-        $teacher->department_id = $request->department_id;
-        $teacher->teacher_picture = $teacher_picture_new_name;
-        $teacher->teacher_information = $request->teacher_information;
-        $teacher->save();
+            $teacher = new Teacher();
+            $teacher->user_id = $user->id;
+            $teacher->teacher_name = $request->teacher_name;
+            $teacher->teacher_email = $request->teacher_email;
+            $teacher->department_id = $request->department_id;
+            $teacher->teacher_picture = $teacher_picture_new_name;
+            $teacher->teacher_information = $request->teacher_information;
+            $teacher->save();
+        }else{
+            return 'failed to add user';
+        }
 
         $request->session()->flash('success', 'Teacher added successfully');
 
@@ -158,8 +170,41 @@ class teacherController extends Controller
         return $teachers;
     }
 
+    public function logout(){
+        Auth::logout();
+        return redirect('/');
+    }
+    public function checkPassword(){
+        if (Auth::user()->check_password == 0){
+            return false;
+        }
+        return true;
+    }
     public function showDashboard(){
+        if(!$this->checkPassword()){
+            return redirect('/teacher/changePassword');
+        }
         return view('teacher.index');
+    }
+
+    public function showChangePassword(){
+        return view('teacher.changePassword');
+    }
+
+    public function changePassword(Request $request){
+        $this->validate($request, [
+            'old_password' => 'required',
+            'password' => 'required|min:6|confirmed'
+        ]);
+        if (!Hash::check($request->old_password, Auth::user()->password))
+        {
+            $request->session()->flash('error', 'The old password you entered didn\'t match.');
+            return back();
+        }
+        $user = User::where('id', Auth::user()->id);
+        $user->update(['password' => Hash::make($request->password), 'check_password' => '1']);
+        $request->session()->flash('success', 'Password changed successfully');
+        return back();
     }
 
 }
