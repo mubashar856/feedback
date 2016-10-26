@@ -120,7 +120,7 @@ class teacherController extends Controller
         $user->name = $request->teacher_name;
         $user->email = $request->teacher_email;
         $user->password = bcrypt('teacher');
-        $usr->check_password = 0;
+        $user->check_password = 0;
         $user->role = 'teacher';
         if($user->save()){
 
