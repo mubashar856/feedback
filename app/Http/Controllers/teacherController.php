@@ -158,4 +158,8 @@ class teacherController extends Controller
         return $teachers;
     }
 
+    public function showDashboard(){
+        return view('teacher.index');
+    }
+
 }
