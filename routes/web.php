@@ -76,7 +76,7 @@ Route::group(['prefix' => 'teacher', 'middleware' => 'teacher'], function (){
     Route::get('/', 'teacherController@showDashboard');
     Route::get('changePassword', 'teacherController@showChangePassword');
     Route::get('logout', 'teacherController@logout');
-
+    Route::get('subject/{subjectTeacher}', 'teacherController@showSubjectProfile');
     Route::post('profile/update/password/', 'teacherController@changePassword');
 
 

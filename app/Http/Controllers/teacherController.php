@@ -184,7 +184,11 @@ class teacherController extends Controller
         if(!$this->checkPassword()){
             return redirect('/teacher/changePassword');
         }
-        return view('teacher.index');
+        $teacher = Teacher::where('user_id', Auth::user()->id)->first();
+
+        $subjectTeachers = SubjectTeacher::where('teacher_id', $teacher->id)->get();
+
+        return view('teacher.index', compact('teacher', 'subjectTeachers'));
     }
 
     public function showChangePassword(){
@@ -205,6 +209,12 @@ class teacherController extends Controller
         $user->update(['password' => Hash::make($request->password), 'check_password' => '1']);
         $request->session()->flash('success', 'Password changed successfully');
         return back();
+    }
+
+    public function showSubjectProfile($subjectTeacher){
+        $subjectTeacher = SubjectTeacher::where('id', $subjectTeacher)->first();
+
+        return view('teacher.subject', compact('subjectTeacher'));
     }
 
 }

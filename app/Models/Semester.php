@@ -23,5 +23,4 @@ class Semester extends Model
     public function subjectTeachers(){
         return $this->hasMany(SubjectTeacher::class);
     }
-
 }
