@@ -85,6 +85,7 @@ class teacherController extends Controller
     {      
         $teacher = Teacher::find($id);
         if (unlink(public_path('uploads/teacher/'.$teacher->teacher_picture))) {
+            User::where('id', $teacher->user_id)->delete();
             if ($teacher->DELETE()) {
                 session()->flash('success', 'Teacher deleted successfully');
             }else{
