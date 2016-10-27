@@ -6,6 +6,9 @@ namespace App\Http\Controllers;
 use App\Models\Department;
 
 
+use App\Models\Teacher;
+use App\Models\User;
+use App\Utils\Util;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -28,15 +31,12 @@ class departmentController extends Controller
             'department_name' => 'required',
             'department_logo' => 'max:2048|image|mimes:jpeg,png,jpg,gif,svg'
         ]);
-
         $department = Department::find($request->department_id);
-
         $department->department_name = $request->department_name;
-
         if ($request->department_logo != '') {
             $department_logo_name = $department->department_logo;
             if ($department->department_logo != 'default.png'){
-                if(unlink(public_path('uploads/department/'.$department->department_logo))){
+                if(Util::deleteImage('department', $department->department_logo)){
                     $request->department_logo->move(public_path('uploads/department'), $department_logo_name);
                 }
             }else{
@@ -53,7 +53,15 @@ class departmentController extends Controller
     public function removeDepartment($id)
     {      
         $department = Department::find($id);
-        if (unlink(public_path('uploads/department/'.$department->department_logo))) {
+        if (Util::deleteImage('department', $department->department_logo)) {
+            $teachers = Teacher::where('department_id', $department->id)->get();
+            foreach ($teachers as $teacher){
+                if (Util::deleteImage('teacher', $teacher->teacher_picture)){
+                    User::where('id', $teacher->user_id)->delete();
+                }
+            }
+            Teacher::where('department_id', $department->id)->delete();
+
             if ($department->DELETE()) {
                 session()->flash('success', 'Department deleted successfully');
             }else{

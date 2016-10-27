@@ -69,6 +69,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function ()
 
 });
 
+Route::group(['prefix' => 'teacher', 'middleware' => 'teacher'], function (){
+
+//    Teacher Routes
+
+    Route::get('/', 'teacherController@showDashboard');
+    Route::get('changePassword', 'teacherController@showChangePassword');
+    Route::get('logout', 'teacherController@logout');
+    Route::get('subject/{subjectTeacher}', 'teacherController@showSubjectProfile');
+    Route::post('profile/update/password/', 'teacherController@changePassword');
+
+
+
+});
 
 
 
@@ -80,8 +93,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function ()
 
 
 
+//general routes
 
-
+Route::get('/exchange', 'loginController@checkRole');
 
 // teacher routes
 Route::post('/', 'teacherController@searchTeacher');
