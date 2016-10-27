@@ -322,7 +322,62 @@ body{
     padding: 0;
 }
 
+.teacher-profile-header{
+    background-color: #fff;
+    border-radius: 7px;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+.teacher-detail-group{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    margin-top: 35px;
+}
+.teacher-detail-group li{
+    background-color: #f1f1f1;
+    padding: 7px 15px;
+    border-radius: 7px;
+    margin-top: 10px;
+    font-size: 16px;
+}
+.teacher-detail-group li .heading{
+    font-weight: bold;
+}
 
+.teacher-subjects, .teacher-profile-subject-comments{
+    background-color: #fff;
+    padding: 35px 15px;
+    border-radius: 7px;
+}
+.teacher-subjects a{
+    padding: 8px 12px;
+    color: #fff;
+    background-color: #30445C;
+    text-decoration: none;
+}
+.teacher-subjects h2, .teacher-profile-subject-comments h2{
+    padding: 0 0 15px 0;
+    margin: 0;
+}
+.teacher-profile-subject-comments ul{
+    border: 0;
+    margin: 0;
+    list-style: none;
+}
+.teacher-profile-subject-comments li{
+    background-color: #f1f1f1;
+    padding: 8px 15px 30px 15px;
+    border-radius: 5px;
+    margin-bottom: 12px;
+    position: relative;
+}
+.teacher-profile-subject-comments li .sender-name{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    font-size: 12px;
+}
 
 
 

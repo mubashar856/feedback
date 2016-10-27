@@ -9,6 +9,7 @@ use App\Models\SubjectTeacher;
 
 use App\Models\Teacher;
 
+use App\Utils\Util;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -51,7 +52,7 @@ class subjectController extends Controller
         if ($request->subject_logo != '') {
             $subject_logo_name = $subject->subject_logo;
             if ($subject->subject_logo != 'default.png'){
-                if(unlink(public_path('uploads/subject/'.$subject->subject_logo))){
+                if(Util::deleteImage('subject', $subject->subject_logo)){
                     $request->subject_logo->move(public_path('uploads/subject'), $subject_logo_name);
                 }
             }else{
@@ -69,7 +70,7 @@ class subjectController extends Controller
     public function removeSubject($id)
     {      
         $subject = Subject::find($id);
-        if (unlink(public_path('uploads/subject/'.$subject->subject_logo))) {
+        if (Util::deleteImage('subject', $subject->subject_logo)) {
             if ($subject->DELETE()) {
                 session()->flash('success', 'Subject deleted successfully');
             }else{

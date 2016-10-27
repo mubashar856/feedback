@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Semester;
 use App\Models\Teacher;
-
+use App\Utils\Util;
 use App\Models\Department;
 
 use App\Models\Subject;
@@ -71,7 +71,7 @@ class teacherController extends Controller
 
         if ($request->teacher_picture != '') {
             $teacher_picture_name = $teacher->teacher_picture;
-            if(unlink(public_path('uploads/teacher/'.$teacher->teacher_picture))){
+            if(Util::deleteImage('teacher', $teacher->teacher_picture)){
                 $request->teacher_picture->move(public_path('uploads/teacher'), $teacher_picture_name);
             }
         }
@@ -84,7 +84,7 @@ class teacherController extends Controller
     public function removeTeacher($id)
     {      
         $teacher = Teacher::find($id);
-        if (unlink(public_path('uploads/teacher/'.$teacher->teacher_picture))) {
+        if (Util::deleteImage('teacher', $teacher->teacher_picture)) {
             User::where('id', $teacher->user_id)->delete();
             if ($teacher->DELETE()) {
                 session()->flash('success', 'Teacher deleted successfully');
