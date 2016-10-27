@@ -213,8 +213,10 @@ class teacherController extends Controller
     }
 
     public function showSubjectProfile($subjectTeacher){
+        if(!$this->checkPassword()){
+            return redirect('/teacher/changePassword');
+        }
         $subjectTeacher = SubjectTeacher::where('id', $subjectTeacher)->first();
-
         return view('teacher.subject', compact('subjectTeacher'));
     }
 

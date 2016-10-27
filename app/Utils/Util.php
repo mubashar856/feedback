@@ -2,6 +2,7 @@
 
     namespace App\Utils;
 
+
 class Util {
     public static function deleteImage($path , $fileName){
         if($fileName != 'default.png'){
@@ -11,5 +12,7 @@ class Util {
         }
         return false;
     }
+
+    
 
 }
